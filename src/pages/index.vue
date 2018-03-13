@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="index-right">
-      <!--<slide-show :slides="slides" :inv="invTime"></slide-show>-->
+      <slide-show :slides="slides" :inv="invTime"></slide-show>
       <div class="index-board-list">
         <div
           class="index-board-item"
@@ -45,35 +45,71 @@
 </template>
 
 <script>
-    export default {
+  import slideShow from '../components/slideShow'
+  export default {
       name: "index",
+      components: {
+        slideShow
+      },
+      // created: function () {
+      //   this.$http.get('getList')
+      //     .then(function (data) {
+      //
+      //     },function (err) {
+      //       console.log(1)
+      //       console.log(err)
+      //     })
+      // },
       data() {
         return {
+          invTime: 2000,
+          slides: [
+            {
+              src: require('../assets/slideShow/pic1.jpg'),
+              title: '广告板1',
+              href: 'detail/analysis'
+            },
+            {
+              src: require('../assets/slideShow/pic2.jpg'),
+              title: '广告板2',
+              href: 'detail/count'
+            },
+            {
+              src: require('../assets/slideShow/pic3.jpg'),
+              title: '广告板3',
+              href: 'http://xxx.xxx.com'
+            },
+            {
+              src: require('../assets/slideShow/pic4.jpg'),
+              title: '广告板4',
+              href: 'detail/forecast'
+            }
+          ],
           boardList: [
             {
-              title: '开放产品',
-              description: '开放产品是一款开放产品',
+              title: 'java',
+              description: 'java博客，希望能够写出一套完善的java入门教程',
               id: 'car',
               toKey: 'analysis',
               saleout: false
             },
             {
-              title: '品牌营销',
-              description: '品牌营销帮助你的产品更好地找到定位',
+              title: '大数据',
+              description: '大数据博客，分享学习大数据过程中的心得',
               id: 'earth',
               toKey: 'count',
               saleout: false
             },
             {
-              title: '使命必达',
-              description: '使命必达快速迭代永远保持最前端的速度',
+              title: 'linux',
+              description: '大学时期一直觉得以为玩Redhat的学长很酷',
               id: 'loud',
               toKey: 'forecast',
               saleout: true
             },
             {
-              title: '勇攀高峰',
-              description: '帮你勇闯高峰，到达事业的顶峰',
+              title: '前端',
+              description: '接触了前端之后就停不下来了',
               id: 'hill',
               toKey: 'publish',
               saleout: false
