@@ -1,6 +1,8 @@
 # vue-test
 
-> A Vue.js project
+> A blog template based on vue, which is provided for Vue's freshman to pratice Vue as a in-door project.
+
+this project only include fore-end page,later,I will use two ways:node and java, to construct the back-end
 
 ## Build Setup
 
