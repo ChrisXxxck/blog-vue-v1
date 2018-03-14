@@ -4,8 +4,8 @@
       <div class="index-left-block">
         <h2>博客分类</h2>
 
-        <template v-for="blog in blogList">
-          <h3>{{ blog.title}}</h3>
+        <template v-for="blog in categoryList">
+          <h3>{{ blog.name}}</h3>
           <ul>
             <li v-for="item in blog.list">
               <a :href="item.url">{{ item.name }}</a>
@@ -35,7 +35,7 @@
             <h2>{{ item.title }}</h2>
             <p>{{ item.description }}</p>
             <div class="index-board-button">
-              <router-link class="button" :to="{path: 'detail/' + item.toKey}">立即购买</router-link>
+              <router-link class="button" :to="{path: 'detail/' + item.toKey}">立即查看</router-link>
             </div>
           </div>
         </div>
@@ -51,15 +51,16 @@
       components: {
         slideShow
       },
-      // created: function () {
-      //   this.$http.get('getList')
-      //     .then(function (data) {
-      //
-      //     },function (err) {
-      //       console.log(1)
-      //       console.log(err)
-      //     })
-      // },
+      created: function () {
+        this.$http.get('/api/getCategoryList')
+          .then((res) => {
+            console.log(res.body)
+            this.categoryList = res.body
+          },function (err) {
+            console.log(1)
+            console.log(err)
+          })
+      },
       data() {
         return {
           invTime: 2000,
@@ -129,58 +130,59 @@
               url:''
             }
           ],
-          blogList: {
-            techArticles: {
-              title: '技术随笔',
-              list: [
-                {
-                  name: 'java',
-                  url: 'http://starcraft.com'
-                },
-                {
-                  name: '前端',
-                  url: 'http://warcraft.com'
-                },
-                {
-                  name: '大数据',
-                  url: 'http://overwatch.com',
-                  hot: true
-                },
-                {
-                  name: 'linux',
-                  url: 'http://hearstone.com'
-                }
-              ]
-            },
-            lifeArticles: {
-              title: '生活随笔',
-              list: [
-                {
-                  name: '开心一刻',
-                  url: 'http://weixin.com'
-                },
-                {
-                  name: '逗乐视频',
-                  url: 'http://twitter.com',
-                  hot: true
-                },
-                {
-                  name: '全民相册',
-                  url: 'http://maps.com'
-                }
-              ]
-            },
-            workArticles:{
-              title:'工作随笔',
-              last:true,
-              list:[
-                {
-                  name:'工作点滴',
-                  url:''
-                }
-              ]
-            }
-          }
+          categoryList:[]
+          // categoryList: [
+          //   {
+          //     name: '技术随笔',
+          //     list: [
+          //       {
+          //         name: 'java',
+          //         url: 'http://starcraft.com'
+          //       },
+          //       {
+          //         name: '前端',
+          //         url: 'http://warcraft.com'
+          //       },
+          //       {
+          //         name: '大数据',
+          //         url: 'http://overwatch.com',
+          //         hot: true
+          //       },
+          //       {
+          //         name: 'linux',
+          //         url: 'http://hearstone.com'
+          //       }
+          //     ]
+          //   },
+          //   {
+          //     name: '生活随笔',
+          //     list: [
+          //       {
+          //         name: '开心一刻',
+          //         url: 'http://weixin.com'
+          //       },
+          //       {
+          //         name: '逗乐视频',
+          //         url: 'http://twitter.com',
+          //         hot: true
+          //       },
+          //       {
+          //         name: '全民相册',
+          //         url: 'http://maps.com'
+          //       }
+          //     ]
+          //   },
+          //   {
+          //     name:'工作随笔',
+          //     last:true,
+          //     list:[
+          //       {
+          //         name:'工作点滴',
+          //         url:''
+          //       }
+          //     ]
+          //   }
+          // ]
         }
       }
     }
