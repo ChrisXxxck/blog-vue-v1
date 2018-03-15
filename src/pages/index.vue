@@ -29,13 +29,13 @@
       <div class="index-board-list">
         <div
           class="index-board-item"
-          v-for="(item, index) in boardList"
-          :class="[{'line-last' : index % 2 !== 0}, 'index-board-' + item.id]">
+          v-for="(item, index) in courseList"
+          :class="[{'line-last' : index % 2 !== 0}, 'index-board-' + item.img]">
           <div class="index-board-item-inner" >
             <h2>{{ item.title }}</h2>
             <p>{{ item.description }}</p>
             <div class="index-board-button">
-              <router-link class="button" :to="{path: 'detail/' + item.toKey}">立即查看</router-link>
+              <router-link class="button" :to="{path: 'course/' + item.url}">立即查看</router-link>
             </div>
           </div>
         </div>
@@ -57,7 +57,14 @@
             console.log(res.body)
             this.categoryList = res.body
           },function (err) {
-            console.log(1)
+            console.log(err)
+          });
+
+        this.$http.get('/api/getCourseList')
+          .then((res) => {
+            console.log(res.body);
+            this.courseList = res.body
+          },(err) => {
             console.log(err)
           })
       },
@@ -86,36 +93,33 @@
               href: 'detail/forecast'
             }
           ],
-          boardList: [
-            {
-              title: 'java',
-              description: 'java博客，希望能够写出一套完善的java入门教程',
-              id: 'car',
-              toKey: 'analysis',
-              saleout: false
-            },
-            {
-              title: '大数据',
-              description: '大数据博客，分享学习大数据过程中的心得',
-              id: 'earth',
-              toKey: 'count',
-              saleout: false
-            },
-            {
-              title: 'linux',
-              description: '大学时期一直觉得以为玩Redhat的学长很酷',
-              id: 'loud',
-              toKey: 'forecast',
-              saleout: true
-            },
-            {
-              title: '前端',
-              description: '接触了前端之后就停不下来了',
-              id: 'hill',
-              toKey: 'publish',
-              saleout: false
-            }
-          ],
+          courseList: [],
+          //   [
+          //   {
+          //     title: 'java',
+          //     description: 'java博客，希望能够写出一套完善的java入门教程',
+          //     img: 'java',
+          //     url: 'java',
+          //   },
+          //   {
+          //     title: '大数据',
+          //     description: '大数据博客，分享学习大数据过程中的心得',
+          //     img: 'big-data',
+          //     url: 'bigData',
+          //   },
+          //   {
+          //     title: 'linux',
+          //     description: '大学时期一直觉得以为玩Redhat的学长很酷',
+          //     img: 'linux',
+          //     url: 'linux',
+          //   },
+          //   {
+          //     title: '前端',
+          //     description: '接触了前端之后就停不下来了',
+          //     img: 'front-end',
+          //     url: 'frontEnd',
+          //   }
+          // ],
           newsList: [
             {
               title:'java从入门到放弃',
@@ -244,16 +248,16 @@
     min-height: 125px;
     padding-left: 120px;
   }
-  .index-board-car .index-board-item-inner{
+  .index-board-java .index-board-item-inner{
     background: url(../assets/images/1.png) no-repeat;
   }
-  .index-board-loud .index-board-item-inner{
+  .index-board-linux .index-board-item-inner{
     background: url(../assets/images/2.png) no-repeat;
   }
-  .index-board-earth .index-board-item-inner{
+  .index-board-big-data .index-board-item-inner{
     background: url(../assets/images/3.png) no-repeat;
   }
-  .index-board-hill .index-board-item-inner{
+  .index-board-front-end .index-board-item-inner{
     background: url(../assets/images/4.png) no-repeat;
   }
   .index-board-item h2 {

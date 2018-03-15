@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import IndexPage from '@/pages/index'
-import DetailPage from '@/pages/detail'
-import DetailAnaPage from '@/pages/detail/analysis'
-import DetailCouPage from '../pages/detail/count'
-import DetailForPage from '../pages/detail/forecast'
-import DetailPubPage from '../pages/detail/publish'
+import CoursePage from '@/pages/course'
+import DetailAnaPage from '@/pages/detail/java'
+import DetailCouPage from '../pages/detail/bidData'
+import DetailForPage from '../pages/detail/linux'
+import DetailPubPage from '../pages/detail/frontEnd'
 
 Vue.use(Router)
 
@@ -16,24 +16,24 @@ export default new Router({
       component: IndexPage
     },
     {
-      path: '/detail',
-      component: DetailPage,
-      redirect:'/detail/analysis',
+      path: '/course',
+      component: CoursePage,
+      redirect:'/course/java',
       children:[
         {
-          path: 'analysis',
+          path: 'java',
           component: DetailAnaPage
         },
         {
-          path: 'count',
+          path: 'bigData',
           component: DetailCouPage
         },
         {
-          path: 'forecast',
+          path: 'linux',
           component: DetailForPage
         },
         {
-          path: 'publish',
+          path: 'frontEnd',
           component: DetailPubPage
         }
       ]

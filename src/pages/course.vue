@@ -24,37 +24,38 @@ export default {
     return {
       products: [
         {
-          name: '数据统计',
-          path: 'count',
+          name: 'java',
+          path: 'java',
           icon: require('../assets/images/1.png'),
           active: false
         },
         {
-          name: '数据预测',
-          path: 'forecast',
+          name: '大数据',
+          path: 'bigData',
           active: false
         },
         {
-          name: '流量分析',
-          path: 'analysis',
+          name: 'linux',
+          path: 'linux',
           active: false
         },
         {
-          name: '广告发布',
-          path: 'publish',
+          name: '前端',
+          path: 'frontEnd',
           active: false
         }
       ],
       imgMap: {
-        '/detail/count': require("../assets/images/1.png"),
-        '/detail/forecast': require("../assets/images/2.png"),
-        '/detail/analysis': require("../assets/images/3.png"),
-        '/detail/publish': require("../assets/images/4.png")
+        '/course/java': require("../assets/images/1.png"),
+        '/course/bigData': require("../assets/images/3.png"),
+        '/course/linux': require("../assets/images/2.png"),
+        '/course/frontEnd': require("../assets/images/4.png")
       }
     }
   },
   computed: {
     productIcon () {
+      console.log(this.$route.path)
       return this.imgMap[this.$route.path]
     }
   }
