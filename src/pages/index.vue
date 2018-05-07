@@ -8,7 +8,8 @@
           <h3>{{ blog.name}}</h3>
           <ul>
             <li v-for="item in blog.list">
-              <a :href="item.url">{{ item.name }}</a>
+              <!--<a :href="item.url">{{ item.name }}</a>-->
+              <router-link :to="{path:'articles'+item.url,query:{id:item.id} }">{{item.name}}</router-link>
               <span v-if="item.hot" class="hot-tag">HOT</span>
             </li>
           </ul>
@@ -75,12 +76,12 @@
             {
               src: require('../assets/slideShow/pic1.jpg'),
               title: '广告板1',
-              href: 'detail/analysis'
+              href: 'course/analysis'
             },
             {
               src: require('../assets/slideShow/pic2.jpg'),
               title: '广告板2',
-              href: 'detail/count'
+              href: 'course/count'
             },
             {
               src: require('../assets/slideShow/pic3.jpg'),
@@ -90,7 +91,7 @@
             {
               src: require('../assets/slideShow/pic4.jpg'),
               title: '广告板4',
-              href: 'detail/forecast'
+              href: 'course/forecast'
             }
           ],
           courseList: [],

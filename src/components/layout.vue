@@ -80,7 +80,10 @@
           onSuccessLog (data) {
             console.log(data)
             this.closeDialog ('isShowLogDialog')
-            this.username = data.username
+            this.username = data.user.account
+          },
+          quit () {
+
           }
         }
     }
@@ -119,6 +122,7 @@
   }
   body {
     line-height: 1;
+    background-color: #eee;
   }
   ol, ul {
     list-style: none;

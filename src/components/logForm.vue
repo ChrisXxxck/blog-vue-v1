@@ -4,7 +4,7 @@
       <div class="g-form-line">
         <span class="g-form-label">用户名：</span>
         <div class="g-form-input">
-          <input type="text" 
+          <input type="text"
           v-model="usernameModel" placeholder="请输入用户名">
         </div>
         <span class="g-form-error">{{ userErrors.errorText }}</span>
@@ -12,7 +12,7 @@
       <div class="g-form-line">
         <span class="g-form-label">密码：</span>
         <div class="g-form-input">
-          <input type="password" 
+          <input type="password"
           v-model="passwordModel" placeholder="请输入密码">
         </div>
         <span class="g-form-error">{{ passwordErrors.errorText }}</span>
@@ -58,9 +58,9 @@ export default {
     },
     passwordErrors () {
       let errorText, status
-      if (!/^\w{1,6}$/g.test(this.passwordModel)) {
+      if (!/^\w{1,30}$/g.test(this.passwordModel)) {
         status = false
-        errorText = '密码不是1-6位'
+        errorText = '密码不是1-20位'
       }
       else {
         status = true
@@ -83,9 +83,15 @@ export default {
       }
       else {
         this.errorText = ''
-        this.$http.get('api/login')
+        this.$http.post('api/users/login',{username:this.usernameModel,password:this.passwordModel},{emulateJSON:true})
         .then((res) => {
-          this.$emit('has-log', res.data)
+          if (res.data.isLogined){
+            this.$emit('has-log', res.data)
+            this.$router.push({ path: `/admin`})
+          }else {
+            this.errorText = res.data.errMsg;
+          }
+
         }, (error) => {
           console.log(error)
         })
